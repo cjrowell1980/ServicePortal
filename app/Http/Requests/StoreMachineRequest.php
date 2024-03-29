@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreMachineRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'stock'     => 'required|string|max:250|unique:machine,stock',
+            'make'      => 'required|string|min:2|max:250',
+            'model'     => 'required|string|min:2|max:250',
+            'serial'    => 'required|string|min:2|max:250|unique:machine,serial',
+            'yom'       => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
+        ];
+    }
+}

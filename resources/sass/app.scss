@@ -1,0 +1,13 @@
+// Import Bootswatch Cosmo stylesheet
+@import "~/bootswatch/dist/cosmo/variables";
+@import "~/bootstrap/scss/bootstrap";
+@import "~/bootswatch/dist/cosmo/bootswatch";
+
+// Import Bootstrap Icons
+@import "~/bootstrap-icons/font/bootstrap-icons.css";
+
+// Import Bootstrap Select
+@import "~/bootstrap-select/dist/css/bootstrap-select.css";
+
+// css overides
+@import "_variables.scss";
