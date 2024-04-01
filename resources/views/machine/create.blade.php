@@ -14,11 +14,14 @@
                 <div class="mb-3 row">
                     <label for="customer" class="col-md-4 col-form-label text-md-end text-start">Customer:</label>
                     <div class="col-md-6">
-                        <select name="customer" id="customer" class="
-                        form-control" data-live-search="true" {{($cust_id != null) ? 'readonly' : ''}}>
+                        <select name="customer" id="customer" class="selectpicker form-control" data-live-search="true">
                             <option value="">Select Customer</option>
                             @forelse ($customers as $customer)
-                                <option value="{{$customer->id}}" {{($cust_id == $customer->id) ? 'selected' : ''}}>[{{strtoupper($customer->syrinx)}}] {{ucwords($customer->name)}}</option>
+                                @if (isset($cust_id))
+                                    <option value="{{$customer->id}}" {{($cust_id == $customer->id) ? 'selected' : ''}}>[{{$customer->syrinx}}] {{$customer->name}}</option>
+                                @else
+                                    <option value="{{$customer->id}}" {{(old('customer') == $customer->id) ? 'selected' : ''}}>[{{$customer->syrinx}}] {{$customer->name}}</option>
+                                @endif
                             @empty
                             @endforelse
                         </select>
@@ -107,12 +110,19 @@
     </div>
 @endsection
 
+@section('headscript')
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" /> --}}
+@endsection
+
 @section('endscript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.js"></script>
     <script>
         $(document).ready(function(){
-            $('.selectpicker').selectpicker();
+            $('.selectpicker select').selectpicker({
+                style: 'btn-info',
+                size: 4
+            });
         })
     </script>
 @endsection

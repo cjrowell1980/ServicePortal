@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateJobsRequest extends FormRequest
+class StoreEngineersRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,10 @@ class UpdateJobsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status'    => 'required',
-            'type'      => 'required',
-            'reported'  => 'required|string',
-            'job_ref'   => 'required|string|unique:jobs,job_ref,'.$this->job->id,
+            'short'     => 'required|string',
+            'long'      => 'required|string',
+            'email'     => 'required|email',
+            'number'    => 'string',
         ];
     }
 }

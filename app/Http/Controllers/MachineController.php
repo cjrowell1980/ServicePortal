@@ -6,6 +6,7 @@ use App\Models\Machine;
 use App\Http\Requests\StoreMachineRequest;
 use App\Http\Requests\UpdateMachineRequest;
 use App\Models\Customers;
+use App\Models\Jobs;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class MachineController extends Controller
     {
         return view('machine.create', [
             'customers' => Customers::all(),
-            'cust_id'   => $request->cust_id,
+            'cust_id'   => $request->id,
         ]);
     }
 
@@ -51,9 +52,14 @@ class MachineController extends Controller
      */
     public function store(StoreMachineRequest $request): RedirectResponse
     {
-        $machine = Machine::create($request->all());
-        return redirect()->route('machine.show', $machine->id)
-            ->withSuccess('Machine created successfully.');
+        $input = $request->all();
+        $input['stock'] = strtoupper($request->stock);
+        $input['asset'] = strtoupper($request->asset);
+        $input['make'] = ucwords($request->make);
+        $input['model'] = ucwords($request->model);
+        $input['serial'] = strtoupper($request->serial);
+        $machine = Machine::create($input);
+        return redirect()->route('jobs.create', 'id=' . $machine->id);
     }
 
     /**
@@ -62,6 +68,7 @@ class MachineController extends Controller
     public function show(Machine $machine): View
     {
         return view('machine.show', [
+            'jobs'      => Jobs::where('machine', $machine->id)->get(),
             'machine'   => $machine,
             'warranty'  => Carbon::create($machine->warranty)->addMonths($machine->warranty_period),
         ]);
@@ -83,7 +90,13 @@ class MachineController extends Controller
      */
     public function update(UpdateMachineRequest $request, Machine $machine): RedirectResponse
     {
-        $machine->update($request->all());
+        $input = $request->all();
+        $input['stock'] = strtoupper($request->stock);
+        $input['asset'] = strtoupper($request->asset);
+        $input['make'] = ucwords($request->make);
+        $input['model'] = ucwords($request->model);
+        $input['serial'] = strtoupper($request->serial);
+        $machine->update($input);
         return redirect()->route('machine.show', $machine->id)
             ->withSuccess('Machine has been successfully updated.');
     }

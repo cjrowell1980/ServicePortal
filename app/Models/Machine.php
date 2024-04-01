@@ -27,4 +27,14 @@ class Machine extends Model
     {
         return $this->belongsTo(Customers::class, 'customer');
     }
+
+    public function getJobs()
+    {
+        return $this->hasMany(Jobs::class, 'machine');
+    }
+
+    public function getOpenJobs()
+    {
+        $allJobs = $this->hasMany(Jobs::class, 'machine');
+    }
 }

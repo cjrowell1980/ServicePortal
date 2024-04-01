@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Settings;
 use App\Http\Requests\StoreSettingsRequest;
 use App\Http\Requests\UpdateSettingsRequest;
+use App\Models\JobStatus;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -24,8 +25,14 @@ class SettingsController extends Controller
      */
     public function index(): View
     {
+        $general    = Settings::where('group', 'general')->get();
+        $default    = Settings::where('group', 'defaults')->get();
+        $author     = Settings::where('group', 'author')->get();
+
         return view('settings.index', [
-            'settings'  => Settings::all(),
+            'general'   => $general,
+            'default'   => $default,
+            'author'    => $author,
         ]);
     }
 
@@ -42,7 +49,7 @@ class SettingsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSettingsRequest $request): RedirectResponse
+    public function store(): RedirectResponse
     {
         // - not authorised
         return redirect()->route('home')
@@ -64,9 +71,24 @@ class SettingsController extends Controller
      */
     public function edit(Settings $setting): View
     {
-        return view('settings.edit', [
-            'setting'   => $setting,
-        ]);
+        $model = "App\Models\\" . $setting->model;
+        switch ($setting->type) {
+
+            case 'modelinteger':
+                $data = [
+                    'model'     => $model::all(),
+                    'setting'   => $setting,
+                ];
+                break;
+
+            case 'string':
+            default:
+                $data = [
+                    'setting'   => $setting,
+                ];
+                break;
+        }
+        return view('settings.edit', $data);
     }
 
     /**

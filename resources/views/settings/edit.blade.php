@@ -20,6 +20,18 @@
                             <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
                             @break
 
+                        @case('modelinteger')
+                                <label for="payload" class="col-md-4 col-form-label-text-md-end-text-start">{{$setting->display}}:</label>
+                                <div class="col-md-6">
+                                    <select name="payload" id="payload" class="form-control">
+                                        @forelse ($model as $row)
+                                            <option value="{{$row->id}}"{{($row->id == $setting->payload) ? " selected" : ""}}>{{$row->name}}</option>
+                                        @empty
+                                        @endforelse
+                                    </select>
+                                </div>
+                                @break
+
                         @default <!-- text box / string -->
                             <label for="payload" class="col-md-4 col-form-label-text-md-end-text-start">{{$setting->display}}:</label>
                             <div class="col-md-6">

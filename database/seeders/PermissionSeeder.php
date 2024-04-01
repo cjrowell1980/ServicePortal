@@ -43,6 +43,18 @@ class PermissionSeeder extends Seeder
             'create-jobtype',
             'edit-jobtype',
             'delete-jobtype',
+
+            'create-engineer',
+            'edit-engineer',
+            'delete-engineer',
+
+            'create-visit',
+            'edit-visit',
+            'delete-visit',
+
+            'create-visitstatus',
+            'edit-visitstatus',
+            'delete-visitstatus',
         ];
 
         foreach ($permissions as $permission) {

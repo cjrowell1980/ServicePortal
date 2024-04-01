@@ -21,6 +21,7 @@ class JobStatusController extends Controller
         $this->middleware('permission:edit-jobstatus', ['only' => ['edit','update']]);
         $this->middleware('permission:delete-jobstatus', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */

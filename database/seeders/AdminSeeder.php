@@ -28,15 +28,5 @@ class AdminSeeder extends Seeder
         ]);
         $admin->assignrole('Admin');
 
-        $customer = User::create([
-            'name'      => 'Customer Manager',
-            'email'     => 'cust@cust.cust',
-            'password'  => Hash::make('CustomerManagerPassword'),
-        ]);
-        $customer->assignrole('Customer Manager');
-
-
-
-
     }
 }

@@ -15,7 +15,6 @@ class RoleSeeder extends Seeder
     {
         Role::create(['name' => 'Super Admin']);
         $admin = Role::create(['name' => 'Admin']);
-        $customer = Role::create(['name' => 'Customer Manager']);
 
         $admin->givePermissionTo([
             'create-user',
@@ -41,12 +40,19 @@ class RoleSeeder extends Seeder
             'create-jobtype',
             'edit-jobtype',
             'delete-jobtype',
+
+            'create-engineer',
+            'edit-engineer',
+            'delete-engineer',
+
+            'create-visit',
+            'edit-visit',
+            'delete-visit',
+
+            'create-visitstatus',
+            'edit-visitstatus',
+            'delete-visitstatus',
         ]);
 
-        $customer->givePermissionTo([
-            'create-customer',
-            'edit-customer',
-            'delete-customer',
-        ]);
     }
 }

@@ -25,9 +25,8 @@ class StoreJobsRequest extends FormRequest
             'machine'   => 'required',
             'status'    => 'required',
             'type'      => 'required',
-            'job_no'    => 'required|unique:jobs,job_no',
             'reported'  => 'required|string',
-            'job_ref'   => 'required|string',
+            'job_ref'   => 'required|string|unique:jobs,job_ref',
         ];
     }
 }

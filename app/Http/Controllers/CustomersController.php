@@ -21,6 +21,7 @@ class CustomersController extends Controller
         $this->middleware('permission:edit-customer', ['only' => ['edit','update']]);
         $this->middleware('permission:delete-customer', ['only' => ['destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +49,7 @@ class CustomersController extends Controller
         $input['syrinx'] = strtoupper($request->syrinx);
         $input['name'] = ucwords($request->name);
         $customer = Customers::create($input);
-        return redirect()->route('customers.show', $customer->id);
+        return redirect()->route('machine.create', 'id=' . $customer->id);
     }
 
     /**

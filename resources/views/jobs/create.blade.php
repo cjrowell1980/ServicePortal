@@ -9,37 +9,34 @@
             </div>
         </div>
         <div class="card-body">
+
+            @if ($message = Session::get('errors'))
+            <div class="alert alert-warning text-center alert-dismissible" role="alert">
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+                <h4 class="alert-heading">Warning!</h4>
+                <p class="mb-0">{{ $message }}</p>
+            </div>
+        @endif
+
             <form action="{{route('jobs.store')}}" method="POST">
                 @csrf
                 <div class="mb-3 row">
                     <label for="customer" class="col-md-4 col-form-label text-md-end text-start">Customer:</label>
                     <div class="col-md-6">
-                        <select name="customer" id="customer" class="form-control">
-                            <option value="">Select customer...</option>
-                            @forelse ($customers as $customer)
-                                <option value="{{$customer->id}}" {{(old('customer') == $customer->id) ? "selected" : ""}}>{{$customer->syrinx . '-' .$customer->name}}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                        @if ($errors->has('type'))
-                            <span class="text-danger">{{$errors->first('type')}}</span>
-                        @endif
+                        <input type="text" name="customer_name" id="customer_name" class="form-control" value="{{$machine->getCustomer->name}}" disabled>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="machine" class="col-md-4 col-form-label text-md-end text-start">Machine:</label>
                     <div class="col-md-6">
-                        <select name="machine" id="machine" class="form-control">
-                        </select>
-                        @if ($errors->has('machine'))
-                            <span class="text-danger">{{$errors->first('machine')}}</span>
-                        @endif
+                        <input type="text" name="machine_name" id="machine_name" class="form-control" value="[{{$machine->stock . '] ' . $machine->make . ' ' . $machine->model}}" disabled>
+                        <input type="hidden" name="machine" id="hidden" value="{{$machine->id}}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="job_ref" class="col-md-4 col-form-label text-md-end text-start">Job Number:</label>
                     <div class="col-md-6">
-                        <input type="number" name="job_ref" id="job_ref" class="form-control @error('job_ref') is-invalid @enderror" value="{{old('job_ref')}}">
+                        <input type="string" name="job_ref" id="job_ref" class="form-control @error('job_ref') is-invalid @enderror" value="{{old('job_ref')}}">
                         @if ($errors->has('job_ref'))
                             <span class="text-danger">{{$errors->first('job_ref')}}</span>
                         @endif
@@ -63,14 +60,13 @@
                 <div class="mb-3 row">
                     <label for="status" class="col-md-4 col-form-label text-md-end text-start">Job Status:</label>
                     <div class="col-md-6">
-                        <select name="type" id="type" class="form-control">
-                            <option value="">Select job status...</option>
+                        <select name="status" id="status" class="form-control">
                             @forelse ($jobstatuses as $jobstatus)
-                                <option value="{{$jobstatus->id}}" {{(old('jobstatus') == $jobstatus->id) ? "selected" : ""}}>{{$jobstatus->name}}</option>
+                                <option value="{{$jobstatus->id}}" {{((old('jobstatus') == $jobstatus->id) || (config('settings.default_job_open') == $jobstatus->id)) ? "selected" : ""}}>{{$jobstatus->name}}</option>
                             @empty
                             @endforelse
                         </select>
-                        @if ($errors->has('type'))
+                        @if ($errors->has('status'))
                             <span class="text-danger">{{$errors->first('type')}}</span>
                         @endif
                     </div>
@@ -81,39 +77,10 @@
                         <textarea name="reported" id="reported" rows="3" class="form-control">{{old('reported')}}</textarea>
                     </div>
                 </div>
+                <div class="mb-3 row">
+                    <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add Job">
+                </div>
             </form>
         </div>
     </div>
 @endsection
-
-@section('endscript')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(document).ready(function(){
-            // customer selection
-            $("#customer").change(function(){
-                var cid = $("#customer").val();
-                $.ajax({
-                    url: '{{route('jobs.get_machines')}}',
-                    method: 'post',
-                    data: 'cid='+cid,
-                    success: function(res) {
-                        console.log(res);
-                        let all_options = "<option value=''>Select Machine...</option>";
-                        let all_machines = res.machines;
-                        $.each(all_machines, function(index, value) {
-                            all_options += "<option value='"+value.id+"'>"+value.stock+" - "+value.make+" "+value.model+" - ["+value.serial+"]</option>"
-                        });
-                        $("#machine").html(all_options);
-                    }
-                });
-            })
-        });
-    </script>
-@endsection
-

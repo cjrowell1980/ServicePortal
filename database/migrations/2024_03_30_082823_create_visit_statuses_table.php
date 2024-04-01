@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('visit_statuses', function (Blueprint $table) {
             $table->id();
 
-            $table->string('group');
             $table->string('name');
-            $table->string('display');
-            $table->string('type');
-            $table->boolean('locked')->default(false);
-            $table->string('payload');
-            $table->string('model')->nullable();
+            $table->string('colour');
+            $table->integer('order')->default('9999');
 
             $table->timestamps();
         });
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('visit_statuses');
     }
 };

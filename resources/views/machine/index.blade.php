@@ -20,6 +20,7 @@
                         <th scope="col" class="fit">Stock No#</th>
                         <th scope="col">Make & Model</th>
                         <th scope="col">Serial No#</th>
+                        <th scope="col" class="fit-center">Open Jobs</th>
                         <th scope="col" class="fit-center">Warranty Status</th>
                         <th scope="col" class="fit-center">Action</th>
                     </tr>
@@ -28,14 +29,20 @@
                     @forelse ($machine as $machine)
                         <tr>
                             <td scope="row">{{$loop->iteration}}</td>
-                            <td class="fit">{{strtoupper($machine->stock)}}</td>
-                            <td>{{ucwords($machine->make .' '. $machine->model)}}</td>
-                            <td>{{strtoupper($machine->serial)}}</td>
+                            <td class="fit">{{$machine->stock}}</td>
+                            <td>{{$machine->make .' '. $machine->model}}</td>
+                            <td>{{$machine->serial}}</td>
+                            <td class="fit-center">tbc</td>
                             <td class="fit-center">
-                                @if(\Carbon\Carbon::create($machine->warranty)->addMonths($machine->warranty_period)->isPast())
-                                    <span class="badge rounded-pill bg-danger">Expired - {{\Carbon\Carbon::create($machine->warranty)->addMonths($machine->warranty_period)->format('j M Y')}}</span>
+                                @if (empty($machine->warranty) || empty($machine->warranty_period))
+                                    <span class="badge rounded-pill bg-info w-100">Not Set</span>
                                 @else
-                                    <span class="badge rounded-pill bg-success">Active - {{\Carbon\Carbon::create($machine->warranty)->addMonths($machine->warranty_period)->format('j M Y')}}</span>
+
+                                    @if (\Carbon\Carbon::parse(\Carbon\Carbon::create($machine->warranty)->addMonths($machine->warranty_period))->isPast())
+                                        <span class="badge rounded-pill bg-danger w-100">Expired {{\Carbon\Carbon::create($machine->warranty)->addMonths($machine->warranty_period)->format('j M Y')}}</span>
+                                    @else
+                                    <span class="badge rounded-pill bg-success w-100">Active {{\Carbon\Carbon::create($machine->warranty)->addMonths($machine->warranty_period)->format('j M Y')}}</span>
+                                    @endif
                                 @endif
                             </td>
                             <td class="fit-center">
@@ -43,7 +50,7 @@
                             </td>
                         </tr>
                     @empty
-                        <td colspan="6" class="text-center">
+                        <td colspan="7" class="text-center">
                             <span class="text-danger">
                                 <strong>No Machines Found!</strong>
                             </span>

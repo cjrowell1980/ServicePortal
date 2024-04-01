@@ -29,4 +29,14 @@ class Jobs extends Model
     {
         return $this->belongsTo(JobType::class, 'type');
     }
+
+    public function getMachine()
+    {
+        return $this->belongsTo(Machine::class, 'machine');
+    }
+
+    public function getVisits()
+    {
+        return $this->hasMany(Visits::class, 'job');
+    }
 }

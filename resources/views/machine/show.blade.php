@@ -5,8 +5,10 @@
         <div class="card-header">
             <div class="float-start">{{$machine->stock}} - {{$machine->make}} {{$machine->model}}{{($machine->asset == "") ? "" : " - " . $machine->asset}}</div>
             <div class="float-end">
-                <form action="{{route('machine.destroy', $machine->id)}}">
-                    <a href="{{route('machine.index')}}" class="btn btn-sm btn-info"><i class="bi bi-arrow-left"></i> Back</a>
+                <form action="{{route('machine.destroy', $machine->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <a href="{{URL::previous()}}" class="btn btn-sm btn-info"><i class="bi bi-arrow-left"></i> Back</a>
                     @can('edit-machine')
                         <a href="{{route('machine.edit', $machine->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                     @endcan
@@ -26,7 +28,7 @@
             <div class="mb-3 row">
                 <label for="serial" class="col-md-4 col-form-label text-md-end text-start"><strong>Serial No#:</strong></label>
                 <div class="col-md-6" style="line-height: 35px;">
-                    {{ strtoupper($machine->serial) }}
+                    {{$machine->serial}}
                 </div>
             </div>
             <div class="mb-3 row">
@@ -56,7 +58,7 @@
             <div class="float-start">Jobs</div>
             <div class="float-end">
                 @can('create-job')
-                    <a href="#" class="btn btn-sm btn-primary"><i class="bi bi-plus-circle"></i> Add New Job</a>
+                    <a href="{{route('jobs.create', 'id=' . $machine->id)}}" class="btn btn-sm btn-primary"><i class="bi bi-plus-circle"></i> Add New Job</a>
                 @endcan
             </div>
         </div>
@@ -83,7 +85,7 @@
                                 <span class="badge rounded-pill bg-{{$job->getStatus->colour}}">{{$job->getStatus->name}}</span>
                             </td>
                             <td class="fit-center">
-                                <a href="{{route('jobs.show')}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i> View</a>
+                                <a href="{{route('jobs.show', $job->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i> View</a>
                             </td>
                         </tr>
                     @empty

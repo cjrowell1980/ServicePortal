@@ -18,7 +18,7 @@
                         <select name="customer" id="customer" class="selectpicker form-control" data-live-search="true">
                             <option value="">Select Customer</option>
                             @forelse ($customers as $customer)
-                                <option value="{{$customer->name}}" {{($machine->getCustomer->id == $customer->id) ? 'selected' : ''}}>[{{strtoupper($customer->syrinx)}}] {{ucwords($customer->name)}}</option>
+                                <option value="{{$customer->id}}" {{($machine->getCustomer->id == $customer->id) ? 'selected' : ''}}>[{{$customer->syrinx}}] {{$customer->name}}</option>
                             @empty
                             @endforelse
                         </select>
@@ -66,7 +66,7 @@
                 <div class="mb-3 row">
                     <label for="serial" class="col-md-4 col-form-label text-md-end text-start">Serial No#:</label>
                     <div class="col-md-6">
-                        <input type="text" class="form-control @error('serial') is-invalid @enderror" id="serial" name="serial" value="{{ strtoupper($machine->serial) }}">
+                        <input type="text" class="form-control @error('serial') is-invalid @enderror" id="serial" name="serial" value="{{$machine->serial}}">
                         @if ($errors->has('serial'))
                             <span class="text-danger">{{ $errors->first('serial') }}</span>
                         @endif
@@ -93,7 +93,7 @@
                 <div class="mb-3 row">
                     <label for="warranty_term" class="col-md-4 col-form-label text-md-end text-start">Warranty Period (Months):</label>
                     <div class="col-md-6">
-                        <input type="number" class="form-control @error('warranty_term') is-invalid @enderror" id="warranty_term" name="warranty_term" value="{{ $machine->warranty_period }}">
+                        <input type="number" class="form-control @error('warranty_term') is-invalid @enderror" id="warranty_period" name="warranty_period" value="{{ $machine->warranty_period }}">
                         @if ($errors->has('warranty_term'))
                             <span class="text-danger">{{ $errors->first('warranty_term') }}</span>
                         @endif
