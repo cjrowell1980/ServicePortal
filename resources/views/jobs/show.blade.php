@@ -64,24 +64,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="fit-center" scope="row">1</td>
-                        <td class="fit-center">31 Mar 24</td>
-                        <td class="fit-center">1 Apr 24</td>
-                        <td>Damaged</td>
-                        <td class="fit-center">
-                            <span class="badge rounded-pill bg-success" style="width:30px" data-bs-toggle="tooltip" title="Job Sheet">JS</span>
-                            <span class="badge rounded-pill bg-danger" style="width:30px" data-bs-toggle="tooltip" title="Photos">PH</span>
-                            <span class="badge rounded-pill bg-danger" style="width:30px" data-bs-toggle="tooltip" title="Payable Invoice">PI</span>
-                            <span class="badge rounded-pill bg-danger" style="width:30px" data-bs-toggle="tooltip" title="Chargeable Invoice">CI</span>
+                    @forelse ($job->getVisits as $visit)
+                        <tr>
+                            <td class="fit-center" scope="row">{{$loop->iteration}}</td>
+                            <td class="fit-center">{{$visit->created_at}}</td>
+                            <td class="fit-center">{{$visit->updated_at}}</td>
+                            <td>{{$visit->notes}}</td>
+                            <td class="fit-center">
+                                <span class="badge rounded-pill bg-{{($visit->js) ? 'success' : 'danger'}}" style="width:30px" data-bs-toggle="tooltip" title="Job Sheet">JS</span>
+                                <span class="badge rounded-pill bg-{{($visit->ph) ? 'success' : 'danger'}}" style="width:30px" data-bs-toggle="tooltip" title="Photos">PH</span>
+                                <span class="badge rounded-pill bg-{{($visit->pi) ? 'success' : 'danger'}}" style="width:30px" data-bs-toggle="tooltip" title="Payable Invoice">PI</span>
+                                <span class="badge rounded-pill bg-{{($visit->ci) ? 'success' : 'danger'}}" style="width:30px" data-bs-toggle="tooltip" title="Chargeable Invoice">CI</span>
+                            </td>
+                            <td class="fit-center">
+                                <span class="badge rounded-pill bg-{{$visit->getStatus->colour}}">{{$visit->getStatus->name}}</span>
+                            </td>
+                            <td class="fit-center">
+                                <a href="{{route('visit.show', $visit->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i> View</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <td colspan="7" class="text-center">
+                            <span class="text-danger"><strong>No Visits Found!</strong></span>
                         </td>
-                        <td class="fit-center">
-                            <span class="badge rounded-pill bg-info">Scheduled</span>
-                        </td>
-                        <td class="fit-center">
-                            <a href="#" class="btn btn-sm btn-warning"><i class="bi bi-eye"></i> View</a>
-                        </td>
-                    </tr>
+                    @endforelse
+
                 </tbody>
             </table>
         </div>

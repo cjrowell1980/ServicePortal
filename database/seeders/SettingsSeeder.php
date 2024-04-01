@@ -75,6 +75,25 @@ class SettingsSeeder extends Seeder
             'payload'   => '7', // days
             'model'     => '',
         ]);
+        Settings::create([
+            'group'     => 'defaults',
+            'name'      => 'default_visit_open_status',
+            'display'   => 'Default New Visit Status',
+            'type'      => 'modelinteger',
+            'locked'    => false,
+            'payload'   => '2',
+            'model'     => 'VisitStatus',
+        ]);
+        Settings::create([
+            'group'     => 'defaults',
+            'name'      => 'visit_closed_status',
+            'display'   => 'Complete Visit Status',
+            'type'      => 'modelinteger',
+            'locked'    => false,
+            'payload'   => '5',
+            'model'     => 'VisitStatus',
+        ]);
+
         // Author Details
         Settings::create([
             'group'     => 'author',

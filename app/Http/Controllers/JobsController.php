@@ -9,6 +9,7 @@ use App\Models\Customers;
 use App\Models\JobStatus;
 use App\Models\JobType;
 use App\Models\Machine;
+use App\Models\Visits;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -71,7 +72,6 @@ class JobsController extends Controller
         ]);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -79,6 +79,13 @@ class JobsController extends Controller
     {
         $input = $request->all();
         $job = Jobs::create($input);
+        Visits::create([
+            'job'       => $job->id,
+            'engineer'  => null,
+            'status'    => config('settings.default_visit_open_status'),
+            'notes'     => $job->reported,
+            'active'    => 1,
+        ]);
         return redirect()->route('jobs.show', $job->id)
             ->withSuccess('Job created successfully');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Visits;
 use App\Http\Requests\StoreVisitsRequest;
 use App\Http\Requests\UpdateVisitsRequest;
+use Illuminate\View\View;
 
 class VisitsController extends Controller
 {
@@ -48,9 +49,11 @@ class VisitsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Visits $visits)
+    public function show(Visits $visit): View
     {
-        //
+        return view('visit.show', [
+            'visit' => $visit,
+        ]);
     }
 
     /**

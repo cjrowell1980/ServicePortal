@@ -18,7 +18,22 @@ class Visits extends Model
         'ph',
         'pi',
         'ci',
-        'notes',
         'report',
+        'active',
     ];
+
+    public function getStatus()
+    {
+        return $this->belongsTo(VisitStatus::class, 'id');
+    }
+
+    public function getJob()
+    {
+        return $this->belongsTo(Jobs::class, 'id');
+    }
+
+    public function getEngineer()
+    {
+        return $this->belongsTo(Engineers::class, 'id');
+    }
 }

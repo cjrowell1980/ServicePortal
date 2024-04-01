@@ -96,7 +96,7 @@
                 <div class="mb-3 row">
                     <label for="warranty_period" class="col-md-4 col-form-label text-md-end text-start">Warranty Period (Months):</label>
                     <div class="col-md-6">
-                        <input type="number" name="warranty_period" id="warranty_period" class="form-control @error('warranty_period') is-invalid @enderror" value="{{old('warranty_period')}}">
+                        <input type="number" name="warranty_period" id="warranty_period" class="form-control @error('warranty_period') is-invalid @enderror" value="{{(old('warranty_period') !== null) ? old('warranty_period') : '24'}}">
                         @if ($errors->has('warranty_period'))
                             <span class="text-danger">{{$errors->first('warranty_period')}}</span>
                         @endif

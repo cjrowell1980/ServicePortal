@@ -53,11 +53,15 @@
                             <td scope="row">{{$setting->display}}</td>
                             <td>
                                 @switch($setting->model)
-                                    @case('JobStatus')
-                                        {{App\Models\JobStatus::find($setting->payload)->name}}
-                                        @break
+                                @case('JobStatus')
+                                    <span class="badge rounded-pill bg-{{App\Models\JobStatus::find($setting->payload)->colour}} w-50">{{App\Models\JobStatus::find($setting->payload)->name}}</span>
+                                    @break
 
-                                    @default
+                                @case('VisitStatus')
+                                    <span class="badge rounded-pill bg-{{App\Models\VisitStatus::find($setting->payload)->colour}} w-50">{{App\Models\VisitStatus::find($setting->payload)->name}}</span>
+                                    @break
+
+                                @default
                                         {{$setting->payload}}
                                 @endswitch</td>
                             <td class="fit-center">

@@ -17,20 +17,20 @@ return new class extends Migration
             $table->unsignedBigInteger('job')->index();
             $table->foreign('job')->references('id')->on('jobs');
 
-            $table->unsignedBigInteger('engineer')->index();
+            $table->unsignedBigInteger('engineer')->index()->nullable();
             $table->foreign('engineer')->references('id')->on('engineers');
 
             $table->unsignedBigInteger('status')->index();
             $table->foreign('status')->references('id')->on('visit_statuses');
 
             $table->string('notes');
-            $table->boolean('js'); // jobsheet
-            $table->boolean('ph'); // photos
-            $table->boolean('pi'); // payable invoice
-            $table->boolean('ci'); // chargeable invoice
+            $table->boolean('js')->default(false); // jobsheet
+            $table->boolean('ph')->default(false); // photos
+            $table->boolean('pi')->default(false); // payable invoice
+            $table->boolean('ci')->default(false); // chargeable invoice
 
             $table->boolean('active'); // 0 = closed
-            $table->longText('report');
+            $table->longText('report')->nullable();
 
             $table->timestamps();
         });
