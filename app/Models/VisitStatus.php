@@ -14,4 +14,9 @@ class VisitStatus extends Model
         'colour',
         'order',
     ];
+
+    public function getVisits()
+    {
+        return $this->hasMany(Visits::class, 'id');
+    }
 }

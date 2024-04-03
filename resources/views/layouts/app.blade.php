@@ -16,7 +16,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{route('jobs.index')}}">
                     {{config('settings.site_name')}}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -32,7 +32,7 @@
                             @canany(['create-machine','edit-machine','delete-machine'])
                                 <li><a href="{{route('machine.index')}}" class="nav-link">Machines</a></li>
                             @endcanany
-                            @canany(['create-jobs','edit-jobs','delete-jobs'])
+                            @canany(['create-job','edit-job','delete-job'])
                                 <li><a href="{{route('jobs.index')}}" class="nav-link">Jobs</a></li>
                             @endcanany
                         @endauth
@@ -52,7 +52,47 @@
                                 </li>
                             @endif
                         @else
-                            @canany(['create-user','edit-user','delete-user','create-role','edit-role','delete-role','edit-setting'])
+                            @canany(['create-role',
+                            'edit-role',
+                            'delete-role',
+
+                            'create-user',
+                            'edit-user',
+                            'delete-user',
+
+                            'create-customer',
+                            'edit-customer',
+                            'delete-customer',
+
+                            'edit-setting',
+
+                            'create-machine',
+                            'edit-machine',
+                            'delete-machine',
+
+                            'create-job',
+                            'edit-job',
+                            'delete-job',
+
+                            'create-jobstatus',
+                            'edit-jobstatus',
+                            'delete-jobstatus',
+
+                            'create-jobtype',
+                            'edit-jobtype',
+                            'delete-jobtype',
+
+                            'create-engineer',
+                            'edit-engineer',
+                            'delete-engineer',
+
+                            'create-visit',
+                            'edit-visit',
+                            'delete-visit',
+
+                            'create-visitstatus',
+                            'edit-visitstatus',
+                            'delete-visitstatus',])
                                 <li class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="adminDropdown">Configuration</a>
                                     <div class="dropdown-menu" aria-labelledby="adminDropdown">
@@ -117,20 +157,26 @@
                                 <p class="mb-0">{{ $message }}</p>
                             </div>
                         @endif
-                        @if ($message = Session::get('warning'))
-                            <div class="alert alert-warning text-center alert-dismissible" role="alert">
-                                <button class="btn-close" data-bs-dismiss="alert"></button>
-                                <h4 class="alert-heading">Warning!</h4>
-                                <p class="mb-0">{{ $message }}</p>
-                            </div>
+
+                        @if (config('settings.debug_warning'))
+                            @if ($message = Session::get('warning'))
+                                <div class="alert alert-warning text-center alert-dismissible" role="alert">
+                                    <button class="btn-close" data-bs-dismiss="alert"></button>
+                                    <h4 class="alert-heading">Warning!</h4>
+                                    <p class="mb-0">{{ $message }}</p>
+                                </div>
+                            @endif
                         @endif
-                        {{-- @if ($message = Session::get('errors'))
-                            <div class="alert alert-danger text-center alert-dismissible" role="alert">
-                                <button class="btn-close" data-bs-dismiss="alert"></button>
-                                <h4 class="alert-heading">Error!</h4>
-                                <p class="mb-0">{{ $message }}</p>
-                            </div>
-                        @endif --}}
+
+                        @if (config('settings.debug_error'))
+                            @if ($message = Session::get('errors'))
+                                <div class="alert alert-danger text-center alert-dismissible" role="alert">
+                                    <button class="btn-close" data-bs-dismiss="alert"></button>
+                                    <h4 class="alert-heading">Error!</h4>
+                                    <p class="mb-0">{{ $message }}</p>
+                                </div>
+                            @endif
+                        @endif
                         @yield('content')
                     </div>
                 </div>

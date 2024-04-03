@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="reported" class="col-md-4 col-form-label text-md-end text-start">Cjr:</label>
+                    <label for="reported" class="col-md-4 col-form-label text-md-end text-start">Reported Fault:</label>
                     <div class="col-md-6">
                         <textarea name="reported" id="reported" rows="3" class="form-control">{!! $job->reported !!}</textarea>
                         @if ($errors->has('reported'))

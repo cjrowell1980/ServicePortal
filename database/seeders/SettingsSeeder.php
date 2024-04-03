@@ -37,6 +37,22 @@ class SettingsSeeder extends Seeder
             'locked'    => false,
             'payload'   => 'Service Portal',
         ]);
+        Settings::create([
+            'group'     => 'general',
+            'name'      => 'debug_warning',
+            'display'   => 'Enable Warning Message',
+            'type'      => 'boolean',
+            'locked'    => false,
+            'payload'   => '1',
+        ]);
+        Settings::create([
+            'group'     => 'general',
+            'name'      => 'debug_error',
+            'display'   => 'Enable Error Message',
+            'type'      => 'boolean',
+            'locked'    => false,
+            'payload'   => '1',
+        ]);
 
         // Defaults
         Settings::create([

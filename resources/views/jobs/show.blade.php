@@ -48,7 +48,9 @@
     <div class="card mt-3">
         <div class="card-header">
             <div class="float-start">Visits</div>
-            <div class="float-end"></div>
+            <div class="float-end">
+                <a href="{{route('visit.create', "job=".$job->id)}}" class="btn btn-sm btn-primary"><i class="bi bi-plus-circle"></i> Add New Visit</a>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-striped table-bordered">
@@ -64,11 +66,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($job->getVisits as $visit)
+                    @forelse ($job->getVisits->sortByDesc('created_at') as $visit)
                         <tr>
                             <td class="fit-center" scope="row">{{$loop->iteration}}</td>
-                            <td class="fit-center">{{$visit->created_at}}</td>
-                            <td class="fit-center">{{$visit->updated_at}}</td>
+                            <td class="fit-center">{{$visit->created_at->format('j M Y')}}</td>
+                            <td class="fit-center">{{$visit->updated_at->format('j M Y')}}</td>
                             <td>{{$visit->notes}}</td>
                             <td class="fit-center">
                                 <span class="badge rounded-pill bg-{{($visit->js) ? 'success' : 'danger'}}" style="width:30px" data-bs-toggle="tooltip" title="Job Sheet">JS</span>

@@ -43,7 +43,7 @@ class MachineController extends Controller
     {
         return view('machine.create', [
             'customers' => Customers::all(),
-            'cust_id'   => $request->id,
+            'cust_id'   => $request->cust_id,
         ]);
     }
 

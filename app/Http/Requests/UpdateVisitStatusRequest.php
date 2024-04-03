@@ -22,9 +22,9 @@ class UpdateVisitStatusRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'required|string',
-            'colour'    => 'required|string',
             'order'     => 'required|integer',
+            'name'      => 'required|string|min:3',
+            'colour'    => 'required|string',
         ];
     }
 }

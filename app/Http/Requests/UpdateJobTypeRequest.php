@@ -22,8 +22,8 @@ class UpdateJobTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'required|string',
             'order'     => 'required|integer',
+            'name'      => 'required|string|min:3',
         ];
     }
 }

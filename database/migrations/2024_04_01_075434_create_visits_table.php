@@ -29,7 +29,7 @@ return new class extends Migration
             $table->boolean('pi')->default(false); // payable invoice
             $table->boolean('ci')->default(false); // chargeable invoice
 
-            $table->boolean('active'); // 0 = closed
+            $table->boolean('active')->default(1); // 0 = closed
             $table->longText('report')->nullable();
 
             $table->timestamps();

@@ -49,7 +49,7 @@ class CustomersController extends Controller
         $input['syrinx'] = strtoupper($request->syrinx);
         $input['name'] = ucwords($request->name);
         $customer = Customers::create($input);
-        return redirect()->route('machine.create', 'id=' . $customer->id);
+        return redirect()->route('machine.create', 'cust_id=' . $customer->id);
     }
 
     /**

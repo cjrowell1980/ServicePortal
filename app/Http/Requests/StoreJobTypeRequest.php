@@ -22,8 +22,8 @@ class StoreJobTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'  => 'required',
             'order' => 'required|integer',
+            'name'  => 'required|string|min:3',
         ];
     }
 }

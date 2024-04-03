@@ -42,7 +42,7 @@
                     @empty
                         <td colspan="7" class="text-center">
                             <span class="text-danger">
-                                <strong>No Jobs Founs</strong>
+                                <strong>No Jobs Found!</strong>
                             </span>
                         </td>
                     @endforelse

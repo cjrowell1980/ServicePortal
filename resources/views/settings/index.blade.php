@@ -16,7 +16,15 @@
                     @forelse ($general as $setting)
                         <tr>
                             <td scope="row">{{$setting->display}}</td>
-                            <td>{{$setting->payload}}</td>
+                            <td>
+                                @switch($setting->type)
+                                    @case('boolean')
+                                        {{($setting->payload == '1') ? "Enabled" : "Disabled"}}
+                                        @break
+
+                                    @default
+                                        {{$setting->payload}}
+                                @endswitch</td>
                             <td class="fit-center">
                                 @can('edit-settings')
                                     @if (!$setting->locked)
@@ -62,7 +70,7 @@
                                     @break
 
                                 @default
-                                        {{$setting->payload}}
+                                    {{$setting->payload}}
                                 @endswitch</td>
                             <td class="fit-center">
                                 @can('edit-settings')

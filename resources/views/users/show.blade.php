@@ -17,7 +17,7 @@
                                 <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                             @endcan
                             @can('delete-user')
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user? \n\n {{$user->name}}')"><i class="bi bi-trash"></i> Delete</button>
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?')"><i class="bi bi-trash"></i> Delete</button>
                             @endcan
                         </form>
                     </div>

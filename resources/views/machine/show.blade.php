@@ -13,7 +13,7 @@
                         <a href="{{route('machine.edit', $machine->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                     @endcan
                     @can('delete-machine')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this machine? \n\n {{$machine->stock}}')"><i class="bi bi-trash"></i> Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this machine?')"><i class="bi bi-trash"></i> Delete</button>
                     @endcan
                 </form>
             </div>
@@ -75,7 +75,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($jobs as $job)
+                    @forelse ($jobs->sortByDesc('created_at') as $job)
                         <tr>
                             <td class="fit-center" scope="row">{{$loop->iteration}}</td>
                             <td class="fit-center">{{$job->job_ref}}</td>

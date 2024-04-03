@@ -41,7 +41,7 @@ class JobsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request): View
+    public function create(Request $request)
     {
         if(count(Customers::all()) == 0) {
             return redirect()->route('customers.create')->withWarning('No customers defined');
@@ -79,15 +79,7 @@ class JobsController extends Controller
     {
         $input = $request->all();
         $job = Jobs::create($input);
-        Visits::create([
-            'job'       => $job->id,
-            'engineer'  => null,
-            'status'    => config('settings.default_visit_open_status'),
-            'notes'     => $job->reported,
-            'active'    => 1,
-        ]);
-        return redirect()->route('jobs.show', $job->id)
-            ->withSuccess('Job created successfully');
+        return redirect()->route('visit.create', 'job='.$job->id);
     }
 
     /**

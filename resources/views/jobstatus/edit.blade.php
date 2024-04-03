@@ -34,37 +34,40 @@
                     <label for="colour" class="col-md-4 col-form-label text-md-end text-start">Colour:</label>
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="primary" {{($jobstatus->colour == "primary") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="primary"{{($jobstatus->colour == 'primary') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-primary w-25">Primary</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="secondary" {{($jobstatus->colour == "secondary") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="secondary"{{($jobstatus->colour == 'secondary') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-secondary w-25">Secondary</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="success" {{($jobstatus->colour == "success") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="success"{{($jobstatus->colour == 'success') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-success w-25">Success</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="info" {{($jobstatus->colour == "info") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="info"{{($jobstatus->colour == 'info') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-info w-25">Info</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="warning" {{($jobstatus->colour == "warning") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="warning"{{($jobstatus->colour == 'warning') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-warning w-25">Warning</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="danger" {{($jobstatus->colour == "danger") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="danger"{{($jobstatus->colour == 'danger') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-danger w-25">Danger</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="light" {{($jobstatus->colour == "light") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="light"{{($jobstatus->colour == 'light') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-light w-25">Light</span>
                         </div>
                         <div class="form-check">
-                            <input type="radio" name="colour" id="colour" class="form-check-input" value="dark" {{($jobstatus->colour == "dark") ? "checked" : ""}}>
+                            <input type="radio" name="colour" id="colour" class="form-check-input @error('colour') is-invalid @enderror" value="dark"{{($jobstatus->colour == 'dark') ? ' checked' : ''}}>
                             <span class="badge rounded-pill bg-dark w-25">Dark</span>
                         </div>
+                        @if ($errors->has('colour'))
+                            <span class="text-danger">{{$errors->first('colour')}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="mb-3 row">

@@ -26,11 +26,6 @@ class StoreVisitsRequest extends FormRequest
             'engineer'  => 'integer',
             'status'    => 'required|integer',
             'notes'     => 'required|string',
-            'js'        => 'boolean',
-            'ph'        => 'boolean',
-            'pi'        => 'boolean',
-            'ci'        => 'boolean',
-            'active'    => 'boolean',
             'report'    => 'string',
         ];
     }

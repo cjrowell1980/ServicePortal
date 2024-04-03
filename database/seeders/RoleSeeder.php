@@ -14,45 +14,61 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         Role::create(['name' => 'Super Admin']);
-        $admin = Role::create(['name' => 'Admin']);
-
-        $admin->givePermissionTo([
+        $manager = Role::create(['name' => 'Overlord']);
+        $manager->givePermissionTo([
             'create-user',
             'edit-user',
             'delete-user',
 
             'create-customer',
             'edit-customer',
-            'delete-customer',
 
             'create-machine',
             'edit-machine',
-            'delete-machine',
 
             'create-job',
             'edit-job',
-            'delete-job',
 
             'create-jobstatus',
             'edit-jobstatus',
-            'delete-jobstatus',
 
             'create-jobtype',
             'edit-jobtype',
-            'delete-jobtype',
 
             'create-engineer',
             'edit-engineer',
-            'delete-engineer',
 
             'create-visit',
             'edit-visit',
-            'delete-visit',
 
             'create-visitstatus',
             'edit-visitstatus',
-            'delete-visitstatus',
         ]);
+        $under = Role::create(['name' => 'Underling']);
+        $under->givePermissionTo([
+            'create-customer',
+            'edit-customer',
 
+            'create-machine',
+            'edit-machine',
+
+            'create-job',
+            'edit-job',
+
+            'create-jobstatus',
+            'edit-jobstatus',
+
+            'create-jobtype',
+            'edit-jobtype',
+
+            'create-engineer',
+            'edit-engineer',
+
+            'create-visit',
+            'edit-visit',
+
+            'create-visitstatus',
+            'edit-visitstatus',
+        ]);
     }
 }

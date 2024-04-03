@@ -24,16 +24,16 @@ class Visits extends Model
 
     public function getStatus()
     {
-        return $this->belongsTo(VisitStatus::class, 'id');
+        return $this->belongsTo(VisitStatus::class, 'status');
     }
 
     public function getJob()
     {
-        return $this->belongsTo(Jobs::class, 'id');
+        return $this->belongsTo(Jobs::class, 'job');
     }
 
     public function getEngineer()
     {
-        return $this->belongsTo(Engineers::class, 'id');
+        return $this->belongsTo(Engineers::class, 'engineer');
     }
 }

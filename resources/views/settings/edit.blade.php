@@ -16,8 +16,13 @@
                 <div class="mb-3 row">
                     @switch($setting->type)
                         @case('boolean') <!-- switch box / boolean -->
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                            <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                            <label for="payload" class="col-md-4 col-form-label-text-md-end-text-start">{{$setting->display}}:</label>
+                            <div class="col-md-6">
+                                <select name="payload" id="payload" class="form-control">
+                                    <option value="0"{{($setting->payload == '0') ? ' selected' : ''}}>Disabled</option>
+                                    <option value="1"{{($setting->payload == '1') ? ' selected' : ''}}>Enabled</option>
+                                </select>
+                            </div>
                             @break
 
                         @case('modelinteger')

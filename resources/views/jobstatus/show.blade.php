@@ -34,7 +34,7 @@
             <div class="row">
                 <label for="colour" class="col-md-4 col-form-label text-md-end text-start"><strong>Colour:</strong></label>
                 <div class="col-md-6 show-view">
-                    <span class="badge rounded-pill bg-{{$jobstatus->colour}} w-25">{{$jobstatus->colour}}</span>
+                    <span class="badge rounded-pill bg-{{$jobstatus->colour}} w-25">{{ucwords($jobstatus->colour)}}</span>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
                         <a href="{{route('jobtype.edit', $jobtype->id)}}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i> Edit</a>
                     @endcan
                     @can('delete-jobtype')
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this job type? \n\n {{$jobtype->name}}')"><i class="bi bi-trash"></i> Delete</button>
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this job type?')"><i class="bi bi-trash"></i> Delete</button>
                     @endcan
                 </form>
             </div>
