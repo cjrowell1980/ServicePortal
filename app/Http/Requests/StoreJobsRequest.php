@@ -29,4 +29,17 @@ class StoreJobsRequest extends FormRequest
             'job_ref'   => 'required|string|unique:jobs,job_ref',
         ];
     }
+
+    /**
+     * Custom attribute names
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'syrinx'    => __('syrinx account number'),
+            'name'      => __('account name'),
+        ];
+    }
 }

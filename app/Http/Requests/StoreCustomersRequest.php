@@ -22,8 +22,8 @@ class StoreCustomersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'syrinx'    => 'required|string|max:250|unique:customers,syrinx',
-            'name'      => 'required|string|max:250'
+            'syrinx'    => 'required|string|min:3|max:250|unique:customers,syrinx',
+            'name'      => 'required|string|min:3|max:250'
         ];
     }
 

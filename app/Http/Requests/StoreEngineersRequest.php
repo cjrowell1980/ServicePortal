@@ -28,4 +28,18 @@ class StoreEngineersRequest extends FormRequest
             'number'    => 'string',
         ];
     }
+
+    /**
+     * Custom attribute names
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'long'      => __('Full Name'),
+            'short'     => __('Name Abbreviation'),
+            'number'    => __('Contact Number'),
+        ];
+    }
 }
