@@ -23,7 +23,6 @@ class StoreVisitsRequest extends FormRequest
     {
         return [
             'job'       => 'required|integer',
-            'engineer'  => 'integer',
             'status'    => 'required|integer',
             'notes'     => 'required|string',
             'report'    => 'string',

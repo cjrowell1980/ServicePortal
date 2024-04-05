@@ -34,7 +34,7 @@ class JobsController extends Controller
     public function index(): View
     {
         return view('jobs.index', [
-            'jobs'  => Jobs::all(),
+            'jobs'  => Jobs::latest('id')->paginate(10),
         ]);
     }
 

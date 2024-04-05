@@ -28,7 +28,7 @@ class EngineersController extends Controller
     public function index(): View
     {
         return view('engineer.index', [
-            'engineers' => Engineers::all(),
+            'engineers' => Engineers::latest('id')->paginate(10),
         ]);
     }
 

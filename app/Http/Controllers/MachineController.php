@@ -32,7 +32,7 @@ class MachineController extends Controller
     public function index(): View
     {
         return view('machine.index', [
-            'machine'  => Machine::all(),
+            'machine'  => Machine::latest('id')->paginate(10),
         ]);
     }
 
