@@ -15,14 +15,6 @@ class SettingsSeeder extends Seeder
         // General Settings
         Settings::create([
             'group'     => 'general',
-            'name'      => 'version',
-            'display'   => 'Version',
-            'type'      => 'string',
-            'locked'    => true,
-            'payload'   => '1.0.0',
-        ]);
-        Settings::create([
-            'group'     => 'general',
             'name'      => 'site_title',
             'display'   => 'Site Title',
             'type'      => 'string',
@@ -54,78 +46,56 @@ class SettingsSeeder extends Seeder
             'payload'   => '1',
         ]);
 
-        // Defaults
+        // Package Details
         Settings::create([
-            'group'     => 'defaults',
-            'name'      => 'default_job_open',
-            'display'   => 'Default New Job Status',
-            'type'      => 'modelinteger',
-            'locked'    => false,
-            'payload'   => '1', // New Job
-            'model'     => 'JobStatus',
-        ]);
-        Settings::create([
-            'group'     => 'defaults',
-            'name'      => 'default_job_close',
-            'display'   => 'Job Closed Status',
-            'type'      => 'modelinteger',
-            'locked'    => false,
-            'payload'   => '5', // Closed
-            'model'     => 'JobStatus',
-        ]);
-        Settings::create([
-            'group'     => 'defaults',
-            'name'      => 'default_job_overdue',
-            'display'   => 'Staus for overdue Jobs',
-            'type'      => 'modelinteger',
-            'locked'    => false,
-            'payload'   => '6', // Overdue
-            'model'     => 'JobStatus',
-        ]);
-        Settings::create([
-            'group'     => 'defaults',
-            'name'      => 'default_overdue_duration',
-            'display'   => 'Days before overdue',
-            'type'      => 'integer',
-            'locked'    => false,
-            'payload'   => '7', // days
-            'model'     => '',
-        ]);
-        Settings::create([
-            'group'     => 'defaults',
-            'name'      => 'default_visit_open_status',
-            'display'   => 'Default New Visit Status',
-            'type'      => 'modelinteger',
-            'locked'    => false,
-            'payload'   => '2',
-            'model'     => 'VisitStatus',
-        ]);
-        Settings::create([
-            'group'     => 'defaults',
-            'name'      => 'visit_closed_status',
-            'display'   => 'Complete Visit Status',
-            'type'      => 'modelinteger',
-            'locked'    => false,
-            'payload'   => '5',
-            'model'     => 'VisitStatus',
-        ]);
-
-        // Author Details
-        Settings::create([
-            'group'     => 'author',
+            'group'     => 'package',
             'name'      => 'author_name',
-            'display'   => 'Authors Name',
+            'display'   => 'Developer Name',
             'type'      => 'string',
             'locked'    => true,
             'payload'   => 'C.Rowell',
         ]);
         Settings::create([
-            'group'     => 'author',
+            'group'     => 'package',
             'name'      => 'author_email',
-            'display'   => 'Authors eMail',
-            'type'      => 'string',
+            'display'   => 'Developer eMail',
+            'type'      => 'email',
             'locked'    => true,
             'payload'   => 'admin@amonkeysuncle.co.uk',
+        ]);
+        Settings::create([
+            'group'     => 'package',
+            'name'      => 'version',
+            'display'   => 'Version',
+            'type'      => 'string',
+            'locked'    => true,
+            'payload'   => '1.0.0',
+        ]);
+
+        // User Account Settings
+        Settings::create([
+            'group'     => 'account',
+            'name'      => 'account_registration',
+            'display'   => 'Enable account registration',
+            'type'      => 'boolean',
+            'locked'    => false,
+            'payload'   => '0',
+        ]);
+        Settings::create([
+            'group'     => 'account',
+            'name'      => 'account_password_reset',
+            'display'   => 'Enable forgot password',
+            'type'      => 'boolean',
+            'locked'    => false,
+            'payload'   => '1',
+        ]);
+        Settings::create([
+            'group'     => 'account',
+            'name'      => 'account_verify',
+            'display'   => 'Enable email verification',
+            'type'      => 'boolean',
+            'locked'    => false,
+            'payload'   => '0',
         ]);
     }
 }

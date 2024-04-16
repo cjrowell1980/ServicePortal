@@ -17,7 +17,7 @@
                     <div class="col-md-6">
                         <select name="status" id="status" class="form-control">
                             @forelse ($visitstatuses as $status)
-                                <option value="{{$status->id}}"{{($status->id == config('settings.default_visit_open_status')) ? " selected" : ""}}>{{$status->name}}</option>
+                                <option value="{{$status->id}}"{{($status->id == old('status')) ? " selected" : ""}}>{{$status->name}}</option>
                             @empty
                             @endforelse
                         </select>

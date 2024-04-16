@@ -36,7 +36,12 @@ Route::get('/', function () {
     }
 });
 
-Auth::routes();
+Auth::routes([
+    'login'     => true,
+    'register'  => config('settings.account_registration'),
+    'reset'     => config('settings.account_password_reset'),
+    'verify'    => config('setting.verify'),
+]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

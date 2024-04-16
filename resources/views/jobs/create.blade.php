@@ -62,7 +62,7 @@
                     <div class="col-md-6">
                         <select name="status" id="status" class="form-control">
                             @forelse ($jobstatuses as $jobstatus)
-                                <option value="{{$jobstatus->id}}" {{((old('jobstatus') == $jobstatus->id) || (config('settings.default_job_open') == $jobstatus->id)) ? "selected" : ""}}>{{$jobstatus->name}}</option>
+                                <option value="{{$jobstatus->id}}" {{((old('jobstatus') == $jobstatus->id)) ? "selected" : ""}}>{{$jobstatus->name}}</option>
                             @empty
                             @endforelse
                         </select>

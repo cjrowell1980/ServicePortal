@@ -25,14 +25,9 @@ class SettingsController extends Controller
      */
     public function index(): View
     {
-        $general    = Settings::where('group', 'general')->get();
-        $default    = Settings::where('group', 'defaults')->get();
-        $author     = Settings::where('group', 'author')->get();
-
         return view('settings.index', [
-            'general'   => $general,
-            'default'   => $default,
-            'author'    => $author,
+            'settings'  => Settings::where('group', '<>', 'package')
+                ->orderBy('group', 'ASC')->paginate(10),
         ]);
     }
 

@@ -28,6 +28,7 @@ return new class extends Migration
 
             $table->string('job_ref')->unique();
             $table->string('reported');
+            $table->boolean('active')->default(true);
 
             $table->timestamps();
         });
