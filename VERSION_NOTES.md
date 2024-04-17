@@ -6,6 +6,10 @@ added settings to enable/disable user registration, password reset, and email ve
 |
 
 |
+moved super admin password for seeder to .env
+|
+
+|
 removed engineer requiremtn on visit.create
 removed status defaults from settings
 |
