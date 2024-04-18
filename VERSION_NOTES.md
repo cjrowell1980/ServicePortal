@@ -19,6 +19,10 @@ Added SETUP.md, UPDATE.md, version, VERSION_NOTES.md
 planned addition of update script to check current version
 |
 
+|
+corrected button text - create engineer
+|
+
 1.0.0   5 April 2024
 ****************************************************************************************************
 first release of portal
