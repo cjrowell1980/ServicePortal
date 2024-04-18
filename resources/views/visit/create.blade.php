@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <button type="submit" class="col-md-3 offset-md-5 btn btn-primary">Add New Visit Status</button>
+                    <button type="submit" class="col-md-3 offset-md-5 btn btn-primary">Add New Visit</button>
                 </div>
             </form>
         </div>

@@ -20,7 +20,12 @@ planned addition of update script to check current version
 |
 
 |
-corrected button text - create engineer
+corrected button text
+--views/visit/create.blade.php
+--views/engineers/create.blade.php
+corrected form validation
+--StoreEngineerRequest [number, email]
+--UpdateEngineerRequest [number, email]
 |
 
 1.0.0   5 April 2024

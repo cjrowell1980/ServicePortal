@@ -24,8 +24,8 @@ class UpdateEngineersRequest extends FormRequest
         return [
             'short'     => 'required|string',
             'long'      => 'required|string',
-            'email'     => 'required|email',
-            'number'    => 'string',
+            'email'     => 'nullable|email',
+            'number'    => 'nullable|string',
         ];
     }
 }
