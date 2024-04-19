@@ -49,7 +49,7 @@
 
                 </tbody>
             </table>
-            {{$jobs->links}}
+            {{$jobs->links()}}
         </div>
     </div>
 @endsection

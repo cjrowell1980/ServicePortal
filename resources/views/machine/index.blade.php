@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($machine as $machine)
+                    @forelse ($machines as $machine)
                         <tr>
                             <td scope="row">{{$loop->iteration}}</td>
                             <td class="fit">{{$machine->stock}}</td>
@@ -58,6 +58,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{$machines->links()}}
         </div>
     </div>
 

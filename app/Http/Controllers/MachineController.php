@@ -32,7 +32,8 @@ class MachineController extends Controller
     public function index(): View
     {
         return view('machine.index', [
-            'machine'  => Machine::latest('id')->paginate(10),
+            //'machines'  => Machine::latest('id')->paginate(10),
+            'machines'  => Machine::orderBy('model', 'ASC')->paginate(10),
         ]);
     }
 

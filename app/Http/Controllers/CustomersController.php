@@ -28,7 +28,8 @@ class CustomersController extends Controller
     public function index(): View
     {
         return view('customers.index', [
-            'customers' => Customers::latest('id')->paginate(10),
+            //'customers' => Customers::latest('id')->paginate(10),
+            'customers' => Customers::orderBy('name', 'ASC')->pagniate(10),
         ]);
     }
 
