@@ -49,6 +49,7 @@
 
                 </tbody>
             </table>
+            {{$jobs->links}}
         </div>
     </div>
 @endsection
